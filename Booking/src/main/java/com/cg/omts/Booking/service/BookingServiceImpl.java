@@ -17,9 +17,12 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public Booking addBooking(Booking booking) {
-
-		return bookingdao.save(booking);
-
+    
+	
+		Booking objBooking= bookingdao.save(booking);
+		if(objBooking==null)
+			throw new CustomException("Booking not stored successfully " );
+        return objBooking;
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,8 +38,8 @@ public class BookingController {
 		return bookingservice.addBooking(booking);
 	}
 	
-	@PostMapping(value="/makePayment")
-	public int makePayment(@RequestBody String cardNumber, String cvv, LocalDate expiry)
+	@PostMapping(value="/makePayment/{cardNumber}/{cvv}/{expiry}")
+	public int makePayment(@PathVariable String cardNumber, @PathVariable(required=true) String cvv,@PathVariable LocalDate expiry)
 	{
 		logger.info("Validating payments ");
 		return bookingservice.makePayment(cardNumber, cvv, expiry);
