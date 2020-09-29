@@ -4,11 +4,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -19,20 +20,22 @@ public class Booking {
 	@Id
 	@Column(name="booking_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int bookingId;
+	private int bookingId;
 	
 	
-	@Column(name="movie_Id")
-	int movieId;
+	@Column(name="movie_id")
+	private int movieId;
 	
-
-	@ManyToOne
-	Show showRef;
+    @Column(name="show_id")
+	int showId;
 	
 	@Column(name="booking_date",nullable=false)
 	LocalDate bookingDate;
 	
-	@Column(name="transactional_id")
+	
+
+
+	@Column(name="transaction_id")
 	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactional_seq")
 	//@SequenceGenerator(sequenceName = "transactional_seq", initialValue = 040101 , allocationSize = 1, name = "transactional_seq")
 	int transactionId;
@@ -40,15 +43,23 @@ public class Booking {
 	@Column(name="total_cost",nullable=false)
 	double totalCost;
 	
-	@Column(name="seat_List")
-	List<Seats> seatList;
+	public Booking() {
+		super();
+	}
+
+
+	//@OneToMany(targetEntity=Seats.class)
+//	@Column(name="seat_List")
+	@ElementCollection
+	List<Integer> seatList;
 	
 	
-	public Booking(int movieId, Show showRef, LocalDate bookingDate, double totalCost, List<Seats> seatList) {
+	public Booking(int movieId, int showId, LocalDate bookingDate,int  transactionId, double totalCost,List<Integer> seatList) {
 		super();
 		this.movieId = movieId;
-		this.showRef = showRef;
-		this.bookingDate = bookingDate;
+		this.showId = showId;
+		this.bookingDate =bookingDate;
+		this.transactionId=transactionId;
 		this.totalCost = totalCost;
 		this.seatList = seatList;
 	}
@@ -74,13 +85,13 @@ public class Booking {
 	}
 
 
-	public Show getShowRef() {
-		return showRef;
+	public int getShowId() {
+		return showId;
 	}
 
 
-	public void setShowRef(Show showRef) {
-		this.showRef = showRef;
+	public void setShowId(int showId) {
+		this.showId = showId;
 	}
 
 
@@ -92,6 +103,8 @@ public class Booking {
 	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate = bookingDate;
 	}
+
+
 
 
 	public int getTransactionId() {
@@ -114,13 +127,21 @@ public class Booking {
 	}
 
 
-	public List<Seats> getSeatList() {
+	public List<Integer> getSeatList() {
 		return seatList;
 	}
 
 
-	public void setSeatList(List<Seats> seatList) {
+	public void setSeatList(List<Integer> seatList) {
 		this.seatList = seatList;
 	}
-	}
+	
+
+@Override
+public String toString() {
+	return "Booking [bookingId=" + bookingId + ", movieId=" + movieId + ", showId=" + showId + ", bookingDate="
+			+ bookingDate + ", transactionId=" + transactionId + ", totalCost=" + totalCost + ", seatList="
+			+ seatList + "]";
+}
+}
 

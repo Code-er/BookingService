@@ -1,16 +1,15 @@
-package com.cg.omts.service;
+package com.cg.omts.Booking.service;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import com.cg.omts.Booking.dto.TicketDTO;
+
 import com.cg.omts.Booking.entity.Booking;
-import com.cg.omts.Booking.entity.Seats;
-import com.cg.omts.Booking.entity.Show;
+
 
 public interface BookingService {
 
-	Booking addBooking(int movieId,Show showref,double totalCost,int transactionId,List<Seats> seats);
+	public Booking addBooking(Booking booking);
 	
 	int makePayment(String cardNumber,String cvv,LocalDate expiry);
 	
