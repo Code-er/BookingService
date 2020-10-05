@@ -3,7 +3,6 @@ package com.cg.omts.Booking.service;
 import java.time.LocalDate;
 import java.util.List;
 
-
 import com.cg.omts.Booking.entity.Booking;
 
 
@@ -16,6 +15,8 @@ public interface BookingService {
 	Booking viewBookingById(int bookingId);
 	
 	boolean cancelBookings(int bookingId);
+	
+	List<Booking> getAllBookingsByCustomerId(String userName);
 	
 	
 

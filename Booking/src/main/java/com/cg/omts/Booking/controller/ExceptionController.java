@@ -16,8 +16,8 @@ public class ExceptionController {
 	@ExceptionHandler({CustomException.class,SQLException.class,NullPointerException.class})
 	public ResponseEntity<ErrorDTO> exception(CustomException exception){
 		ErrorDTO error = new ErrorDTO("error",exception.getMessage());
-		ResponseEntity<ErrorDTO> response = new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-		return response;
+		 return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	//	return response; ResponseEntity<ErrorDTO> response
 	}
 
 }
