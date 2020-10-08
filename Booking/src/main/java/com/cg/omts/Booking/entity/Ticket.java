@@ -14,7 +14,7 @@ public class Ticket {
 	private int ticketId;
 	private int noOfSeats;
 	private String seatName;
-	private int bookingId;
+	private int bookingRef;
 	private boolean ticketStatus;
 	private String screenName;
 
@@ -22,12 +22,12 @@ public class Ticket {
 		super();
 	}
 
-	public Ticket( int noOfSeats, String seatName, int bookingId, boolean ticketStatus,
+	public Ticket( int noOfSeats, String seatName, int bookingRef, boolean ticketStatus,
 			String screenName) {
 		super();
 		this.noOfSeats = noOfSeats;
 		this.seatName = seatName;
-		this.bookingId = bookingId;
+		this.bookingRef = bookingRef;
 		this.ticketStatus = ticketStatus;
 		this.screenName = screenName;
 	}
@@ -56,12 +56,12 @@ public class Ticket {
 		this.seatName = seatName;
 	}
 
-	public int getBookingId() {
-		return bookingId;
+	public int getBookingRef() {
+		return bookingRef;
 	}
 
-	public void setBookingId(int bookingId) {
-		this.bookingId = bookingId;
+	public void setBookingRef(int bookingRef) {
+		this.bookingRef = bookingRef;
 	}
 
 	public boolean isTicketStatus() {
@@ -82,8 +82,8 @@ public class Ticket {
 
 	@Override
 	public String toString() {
-		return "Ticket [ticketId=" + ticketId + ", noOfSeats=" + noOfSeats + ", seatName=" + seatName + ", bookingId="
-				+ bookingId + ", ticketStatus=" + ticketStatus + ", screenName=" + screenName + "]";
+		return "Ticket [ticketId=" + ticketId + ", noOfSeats=" + noOfSeats + ", seatName=" + seatName + ", bookingRef="
+				+ bookingRef + ", ticketStatus=" + ticketStatus + ", screenName=" + screenName + "]";
 	}
 
 }
